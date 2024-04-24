@@ -24,4 +24,4 @@ jobs:
         run: |
           # Introduce a rate limit here
           sleep 60  # Sleep for 60 seconds (adjust as needed)
-          docker run --rm -v $(pwd):/zap/wrk/:rw -t ${DOCKER_USERNAME}/zap-baseline -t http://testphp.vulnweb.com/ -c .zap/rules.tsv
+          docker run --rm -v $(pwd):/zap/wrk/:rw -t pixylweb/zap2docker-stable -t http://testphp.vulnweb.com/ -c .zap/rules.tsv
