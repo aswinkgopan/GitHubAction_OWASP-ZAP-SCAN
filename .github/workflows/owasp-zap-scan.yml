@@ -21,9 +21,7 @@ jobs:
       - name: ZAP Scan
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        uses: zaproxy/action-baseline@v0.6.1
-        with:
-          docker_name: 'pixylweb/zap2docker-stable'
-          target: 'http://testphp.vulnweb.com/'
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-a'
+        run: |
+          # Introduce a rate limit here
+          sleep 60  # Sleep for 60 seconds (adjust as needed)
+          docker run --rm -v $(pwd):/zap/wrk/:rw -t ${DOCKER_USERNAME}/zap-baseline -t http://testphp.vulnweb.com/ -c .zap/rules.tsv
